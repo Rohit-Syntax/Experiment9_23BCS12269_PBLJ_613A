@@ -1,15 +1,26 @@
-package com.cu.parta;
+package com.cu.partb;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "student")
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
-    private Course course;
+    private String email;
+    private String course;
     public Student() {}
-    public Student(String name, Course course) { this.name = name; this.course = course; }
+    public Student(String name, String email, String course) {
+        this.name = name; this.email = email; this.course = course;
+    }
+    public int getId() { return id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-    public Course getCourse() { return course; }
-    public void setCourse(Course course) { this.course = course; }
-    public void show() {
-        System.out.println("Student: "+name+" enrolled in "+ (course!=null?course.getName() : "no course"));
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getCourse() { return course; }
+    public void setCourse(String course) { this.course = course; }
+    @Override public String toString() { return id+" | "+name+" | "+email+" | "+course; }
 }
